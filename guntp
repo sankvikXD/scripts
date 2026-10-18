@@ -114,9 +114,9 @@ end)
 
 local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 
+local target = workspace:GetDescendants()
 
 local function tp()
-	local target = workspace:GetDescendants()
 	for i, v in pairs(target) do
 		if v.Name == "GunDrop" then
 			local startHrp = hrp.CFrame
@@ -126,13 +126,14 @@ local function tp()
 end
 
 tpToGunButton.MouseButton1Click:Connect(function()
+	print("xd")
     tp()
+	print("nope")
 end)
 
 local startHrp
 
 local function tpBack()
-	local target = workspace:GetDescendants()
 	for i, v in pairs(target) do
 		if v.Name == "GunDrop" then
 			startHrp = hrp.CFrame
@@ -144,5 +145,7 @@ local function tpBack()
 end
 
 toGunAndBackButton.MouseButton1Click:Connect(function()
+	print("xd but cooler")
     tpBack()
+	print("nope2")
 end)
