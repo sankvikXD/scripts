@@ -139,13 +139,9 @@ local function tpBack()
 end
 
 tpToGunButton.MouseButton1Click:Connect(function()
-	print("xd")
 tp()
-	print("nope")
 end)
 
 toGunAndBackButton.MouseButton1Click:Connect(function()
-	print("xd but cooler")
 tpBack()
-	print("nope2")
 end)
