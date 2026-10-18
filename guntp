@@ -112,6 +112,9 @@ UserInputService.InputEnded:Connect(function(input)
     end
 end)
 
+local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+
+
 local function tp()
 	local target = workspace:GetDescendants()
 	for i, v in pairs(target) do
