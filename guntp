@@ -1,0 +1,145 @@
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "GunTpMenu"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 230, 0, 230)
+mainFrame.Position = UDim2.new(0.5, -115, 0.5, -115)
+mainFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+mainFrame.BorderSizePixel = 0
+mainFrame.Parent = screenGui
+
+local frameCorner = Instance.new("UICorner")
+frameCorner.CornerRadius = UDim.new(0, 18)
+frameCorner.Parent = mainFrame
+
+local frameStroke = Instance.new("UIStroke")
+frameStroke.Color = Color3.fromRGB(15, 15, 15)
+frameStroke.Thickness = 2.5
+frameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+frameStroke.Parent = mainFrame
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Name = "TitleLabel"
+titleLabel.Size = UDim2.new(1, 0, 0, 35)
+titleLabel.Position = UDim2.new(0, 0, 0, 15)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "Gun TP"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextSize = 32
+titleLabel.Font = Enum.Font.Arcade
+titleLabel.Parent = mainFrame
+
+local subTitleLabel = Instance.new("TextLabel")
+subTitleLabel.Name = "SubTitleLabel"
+subTitleLabel.Size = UDim2.new(1, 0, 0, 20)
+subTitleLabel.Position = UDim2.new(0, 0, 0, 50)
+subTitleLabel.BackgroundTransparency = 1
+subTitleLabel.Text = "MM2 Script"
+subTitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+subTitleLabel.TextSize = 18
+subTitleLabel.Font = Enum.Font.Arcade
+subTitleLabel.Parent = mainFrame
+
+local tpToGunButton = Instance.new("TextButton")
+tpToGunButton.Name = "TpToGunButton"
+tpToGunButton.Size = UDim2.new(0, 190, 0, 45)
+tpToGunButton.Position = UDim2.new(0.5, -95, 0, 90)
+tpToGunButton.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+tpToGunButton.BorderSizePixel = 0
+tpToGunButton.Text = "Tp to Gun"
+tpToGunButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+tpToGunButton.TextSize = 22
+tpToGunButton.Font = Enum.Font.Arcade
+tpToGunButton.Parent = mainFrame
+
+local button1Corner = Instance.new("UICorner")
+button1Corner.CornerRadius = UDim.new(0, 10)
+button1Corner.Parent = tpToGunButton
+
+local button1Stroke = Instance.new("UIStroke")
+button1Stroke.Color = Color3.fromRGB(15, 15, 15)
+button1Stroke.Thickness = 2
+button1Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+button1Stroke.Parent = tpToGunButton
+
+local toGunAndBackButton = Instance.new("TextButton")
+toGunAndBackButton.Name = "ToGunAndBackButton"
+toGunAndBackButton.Size = UDim2.new(0, 190, 0, 45)
+toGunAndBackButton.Position = UDim2.new(0.5, -95, 0, 150)
+toGunAndBackButton.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+toGunAndBackButton.BorderSizePixel = 0
+toGunAndBackButton.Text = "To Gun And Back"
+toGunAndBackButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toGunAndBackButton.TextSize = 16
+toGunAndBackButton.Font = Enum.Font.Arcade
+toGunAndBackButton.Parent = mainFrame
+
+local button2Corner = Instance.new("UICorner")
+button2Corner.CornerRadius = UDim.new(0, 10)
+button2Corner.Parent = toGunAndBackButton
+
+local button2Stroke = Instance.new("UIStroke")
+button2Stroke.Color = Color3.fromRGB(15, 15, 15)
+button2Stroke.Thickness = 2
+button2Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+button2Stroke.Parent = toGunAndBackButton
+
+local UserInputService = game:GetService("UserInputService")
+local dragToggle = false
+local dragStart, startPos
+
+mainFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragToggle = true
+        dragStart = input.Position
+        startPos = mainFrame.Position
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) and dragToggle then
+        local delta = input.Position - dragStart
+        mainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragToggle = false
+    end
+end)
+
+local function tp()
+	local target = workspace:GetDescendants()
+	for i, v in pairs(target) do
+		if v.Name == "GunDrop" then
+			local startHrp = hrp.CFrame
+			hrp.CFrame = v.CFrame
+		end
+	end
+end
+
+tpToGunButton.MouseButton1Click:Connect(function()
+    tp()
+end)
+
+local startHrp
+
+local function tpBack()
+	local target = workspace:GetDescendants()
+	for i, v in pairs(target) do
+		if v.Name == "GunDrop" then
+			startHrp = hrp.CFrame
+			hrp.CFrame = v.CFrame
+			wait(0.1)
+			hrp.CFrame = startHrp
+		end
+	end
+end
+
+toGunAndBackButton.MouseButton1Click:Connect(function()
+    tpBack()
+end)
