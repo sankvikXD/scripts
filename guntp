@@ -112,40 +112,13 @@ UserInputService.InputEnded:Connect(function(input)
     end
 end)
 
-local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-
-local target = workspace:GetDescendants()
-
-local function tp()
-	for i, v in pairs(target) do
-		if v.Name == "GunDrop" then
-			local startHrp = hrp.CFrame
-			hrp.CFrame = v.CFrame
-		end
-	end
-end
-
-local startHrp
-
-local function tpBack()
-	for i, v in pairs(target) do
-		if v.Name == "GunDrop" then
-			startHrp = hrp.CFrame
-			hrp.CFrame = v.CFrame
-			wait(0.1)
-			hrp.CFrame = startHrp
-		end
-	end
-end
 
 tpToGunButton.MouseButton1Click:Connect(function()
 	print("xd")
-    tp()
 	print("nope")
 end)
 
 toGunAndBackButton.MouseButton1Click:Connect(function()
 	print("xd but cooler")
-    tpBack()
 	print("nope2")
 end)
