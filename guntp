@@ -125,12 +125,6 @@ local function tp()
 	end
 end
 
-tpToGunButton.MouseButton1Click:Connect(function()
-	print("xd")
-    tp()
-	print("nope")
-end)
-
 local startHrp
 
 local function tpBack()
@@ -143,6 +137,12 @@ local function tpBack()
 		end
 	end
 end
+
+tpToGunButton.MouseButton1Click:Connect(function()
+	print("xd")
+    tp()
+	print("nope")
+end)
 
 toGunAndBackButton.MouseButton1Click:Connect(function()
 	print("xd but cooler")
