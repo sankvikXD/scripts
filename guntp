@@ -119,6 +119,7 @@ local target = workspace:GetDescendants()
 local function tp()
 	for i, v in pairs(target) do
 		if v.Name == "GunDrop" then
+print("found")
 			local startHrp = hrp.CFrame
 			hrp.CFrame = v.CFrame
 		end
@@ -130,6 +131,7 @@ local startHrp
 local function tpBack()
 	for i, v in pairs(target) do
 		if v.Name == "GunDrop" then
+print("found")
 			startHrp = hrp.CFrame
 			hrp.CFrame = v.CFrame
 			wait(0.1)
