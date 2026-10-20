@@ -150,8 +150,7 @@ if playerGui then
         end
     end)
 
-
-local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+ local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 
 local target = workspace:GetDescendants()
 
