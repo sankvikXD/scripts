@@ -121,7 +121,7 @@ local function tp()
 		if v.Name == "GunDrop" then
 print("found")
 			local startHrp = hrp.CFrame
-			hrp.CFrame = v.CFrame
+			hrp.Position = v.Position
 		end
 	end
 end
@@ -133,9 +133,9 @@ local function tpBack()
 		if v.Name == "GunDrop" then
 print("found")
 			startHrp = hrp.CFrame
-			hrp.CFrame = v.CFrame
+			hrp.Position = v.Position
 			wait(0.1)
-			hrp.CFrame = startHrp
+			hrp.Position = startHrp
 		end
 	end
 end
