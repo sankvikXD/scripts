@@ -99,7 +99,7 @@ if playerGui then
     statusLabel.BackgroundTransparency = 1
     statusLabel.Text = "Gun is not found"
     statusLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    statusLabel.TextSize = 16
+    statusLabel.TextSize = 20
     statusLabel.Font = Enum.Font.Arcade
     statusLabel.Parent = mainFrame
 
