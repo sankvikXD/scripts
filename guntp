@@ -150,38 +150,11 @@ if playerGui then
         end
     end)
 
- local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+    tpToGunButton.MouseButton1Click:Connect(function()
+        
+    end)
 
-local target = workspace:GetDescendants()
-
-local function tp()
-	for i, v in pairs(target) do
-		if v.Name == "GunDrop" then
-print("found")
-			local startHrp = hrp.CFrame
-			hrp.Position = v.Position
-		end
-	end
+    toGunAndBackButton.MouseButton1Click:Connect(function()
+        
+    end)
 end
-
-local startHrp
-
-local function tpBack()
-	for i, v in pairs(target) do
-		if v.Name == "GunDrop" then
-print("found")
-			startHrp = hrp.CFrame
-			hrp.Position = v.Position
-			wait(0.1)
-			hrp.Position = startHrp
-		end
-	end
-end
-
-tpToGunButton.MouseButton1Click:Connect(function()
-tp()
-end)
-
-toGunAndBackButton.MouseButton1Click:Connect(function()
-tpBack()
-end)
